@@ -5,6 +5,7 @@ import "./globals.css";
 import MaxWidthWrapper from "@/components/wrappers/MaxWidthWrapper";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
+import { CartProvider } from "@/context/CartContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,11 +48,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        <MaxWidthWrapper className="">
-          {children}
-          <Footer />
-        </MaxWidthWrapper>
+        <CartProvider>
+          <NavBar />
+          <MaxWidthWrapper className="">
+            {children}
+            <Footer />
+          </MaxWidthWrapper>
+        </CartProvider>
       </body>
     </html>
   );
