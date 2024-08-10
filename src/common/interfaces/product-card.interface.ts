@@ -5,5 +5,6 @@ export interface ProductCardInterface {
     title: string;
     price: number;
     imageUrl: string;
+    quantity: number;
     cartAction: ({action}: CartAction) => void;
 }

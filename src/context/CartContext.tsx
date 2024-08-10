@@ -1,8 +1,9 @@
 "use client";
-import { Product } from '@/common/interfaces/procut.interface';
+import { Product } from '@/common/interfaces/product.interface';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface CartItem extends Product {
+  id: Key | null | undefined;
   quantity: number;
 }
 

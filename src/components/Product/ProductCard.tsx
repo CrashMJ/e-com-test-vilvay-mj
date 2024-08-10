@@ -10,9 +10,9 @@ interface ProductCardProps extends ProductCardInterface {
     layout: "vertical" | "horizontal";
 }
 
-const ProductCard = ({ id, title, price, imageUrl, cartAction, layout }: ProductCardProps) => {
+const ProductCard = ({ id, title, price, imageUrl, cartAction, layout, quantity }: ProductCardProps) => {
     const [isAdded, setIsAdded] = useState(false);
-    const [quantity, setQuantity] = useState(1);
+    const [itemQuantity, setItemQuantity] = useState(quantity);
 
     const handleAddToCart = () => {
         setIsAdded(true);
@@ -23,13 +23,13 @@ const ProductCard = ({ id, title, price, imageUrl, cartAction, layout }: Product
     };
 
     const handleIncrease = () => {
-        setQuantity(quantity + 1);
+        setItemQuantity(itemQuantity + 1);
         cartAction({ action: "add" });
     };
 
     const handleDecrease = () => {
         if (quantity > 1) {
-            setQuantity(quantity - 1);
+            setItemQuantity(itemQuantity - 1);
             cartAction({ action: "reduce" });
         }
     };
@@ -40,15 +40,13 @@ const ProductCard = ({ id, title, price, imageUrl, cartAction, layout }: Product
 
     return (
         <div
-            className={`flex ${
-                layout === "vertical" ? "flex-col" : "flex-row flex-wrap sm:flex-nowrap"
-            } border rounded-lg p-4 shadow-lg w-full`}
+            className={`flex ${layout === "vertical" ? "flex-col" : "flex-row flex-wrap sm:flex-nowrap"
+                } border rounded-lg p-4 shadow-lg w-full`}
         >
             {/* Product Image */}
             <div
-                className={`relative ${
-                    layout === "vertical" ? "w-full h-48 mb-4" : "w-full sm:w-40 h-40 mb-4 sm:mb-0 sm:mr-4"
-                }`}
+                className={`relative ${layout === "vertical" ? "w-full h-48 mb-4" : "w-full sm:w-40 h-40 mb-4 sm:mb-0 sm:mr-4"
+                    }`}
             >
                 <Image
                     src={imageUrl}
@@ -71,7 +69,7 @@ const ProductCard = ({ id, title, price, imageUrl, cartAction, layout }: Product
                 {layout === "vertical" ? (
                     <div className="flex items-center justify-between mt-auto">
                         {isAdded ? (
-                            <MdCheckCircle className="text-green-500 animate-pulse" size={32} />
+                            <MdCheckCircle className="text-green-500 animate-pulse ml-auto" size={32} />
                         ) : (
                             <button
                                 className="bg-red-400 text-white p-2 rounded-full hover:bg-red-600 ml-auto"
@@ -90,7 +88,7 @@ const ProductCard = ({ id, title, price, imageUrl, cartAction, layout }: Product
                             >
                                 <FaMinus />
                             </button>
-                            <span className="text-sm font-semibold text-blue-500">{quantity}</span>
+                            <span className="text-sm font-semibold text-blue-500">{itemQuantity}</span>
                             <button
                                 className="bg-gray-300 text-gray-800 p-2 rounded-full hover:bg-gray-400"
                                 onClick={handleIncrease}
