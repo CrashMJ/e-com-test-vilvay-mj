@@ -1,12 +1,5 @@
-
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import MaxWidthWrapper from "@/components/wrappers/MaxWidthWrapper";
-import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
-
-const inter = Inter({ subsets: ["latin"] });
+import RootLayoutClient from "./RootLayoutClient"; // Import the client-side layout component
 
 export const metadata: Metadata = {
   title: "Best E-Commerce Platform in Sri Lanka | Fashion, Electronics, Household Items & More",
@@ -38,20 +31,16 @@ export const metadata: Metadata = {
   author: "Your Company Name",
 };
 
-
+// Root layout
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <NavBar />
-        <MaxWidthWrapper className="">
-          {children}
-          <Footer />
-        </MaxWidthWrapper>
+      <body>
+        <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );
