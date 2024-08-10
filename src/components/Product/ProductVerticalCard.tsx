@@ -1,10 +1,10 @@
 'use client'
-import { ProductProps } from "@/common/interfaces/product.interface";
+import { ProductCardInterface } from "@/common/interfaces/product.interface";
 import { FaShoppingCart } from "react-icons/fa";
 import Image from "next/image"
 
 // Vertical product card component
-const ProductVerticalCard = ({ id, title, price, imageUrl }: ProductProps) => {
+const ProductVerticalCard = ({ id, title, price, imageUrl }: ProductCardInterface) => {
     return (
         <div className="flex flex-col border rounded-lg p-4 shadow-lg w-64">
             {/* Product Image */}
@@ -26,7 +26,7 @@ const ProductVerticalCard = ({ id, title, price, imageUrl }: ProductProps) => {
 
             {/* Price and Cart Button */}
             <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-gray-500">{process.env.CURRENCY}{price.toFixed(2)}</span>
+                <span className="text-sm font-semibold text-gray-500">{process.env.NEXT_PUBLIC_CURRENCY}{price.toFixed(2)}</span>
                 <button className="bg-red-400 text-white p-2 rounded-full hover:bg-red-600" onClick={() => { }}>
                     <FaShoppingCart />
                 </button>
